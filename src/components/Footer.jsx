@@ -54,13 +54,13 @@ export default function Footer() {
                 <Stack direction="row" alignItems="center" spacing={0.5}>
                     <LinkedIn fontSize="small" color="action" />
                     <Link
-                        href="https://www.linkedin.com/in/trung-nguy%E1%BB%85n-ab7289387/"
+                        href="https://www.linkedin.com/in/nguyenhbtrung/"
                         target="_blank"
                         rel="noopener"
                         underline="hover"
                         color="inherit"
                     >
-                        linkedin.com/in/trung-nguyễn-ab7289387
+                        linkedin.com/in/nguyenhbtrung
                     </Link>
                 </Stack>
             </Stack>
