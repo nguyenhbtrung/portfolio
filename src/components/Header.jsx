@@ -16,6 +16,7 @@ import { GitHub, LinkedIn, Email, Menu as MenuIcon, Close } from '@mui/icons-mat
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocation, useNavigate } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
+import { publicPath } from '../utils/path'
 
 export default function Header({ darkMode, setDarkMode }) {
     const [openDrawer, setOpenDrawer] = useState(false)
@@ -34,7 +35,7 @@ export default function Header({ darkMode, setDarkMode }) {
             if (section === 'Home') return '/'
             if (section === 'Projects') return '/#projects'
         }
-        return `/#${section.toLowerCase()}`
+        return publicPath(`/#${section.toLowerCase()}`)
     }
 
     return (

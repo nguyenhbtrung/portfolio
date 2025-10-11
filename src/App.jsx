@@ -20,7 +20,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<MainLayout darkMode={darkMode} setDarkMode={setDarkMode} />} >
