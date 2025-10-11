@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Typography, Button, Stack, Avatar } from '@mui/material'
 import { motion } from 'framer-motion'
+import { publicPath } from '../utils/path'
 
 export default function Hero() {
     return (
@@ -13,7 +14,7 @@ export default function Hero() {
                     <Button variant="outlined" href="#contact">Contact Me</Button>
                 </Stack>
             </Box>
-            <Avatar src="/avatar2.png" sx={{ width: 180, height: 180 }} />
+            <Avatar src={publicPath("/avatar2.png")} sx={{ width: 180, height: 180 }} />
         </Box>
     )
 }

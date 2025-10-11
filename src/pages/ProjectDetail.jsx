@@ -6,6 +6,7 @@ import {
 } from '@mui/material'
 import { GitHub, Language, ArrowBack, KeyboardArrowUp, KeyboardArrowDown } from '@mui/icons-material'
 import { projects } from '../data/projects'
+import { publicPath } from '../utils/path'
 
 export default function ProjectDetail() {
     const { id } = useParams()
@@ -109,7 +110,7 @@ export default function ProjectDetail() {
                     >
                         <Box
                             component="img"
-                            src={selectedImage || project.images[0]}
+                            src={publicPath(selectedImage || project.images[0])}
                             alt={project.title}
                             sx={{
                                 width: '100%',
@@ -184,7 +185,7 @@ export default function ProjectDetail() {
                                 <Box
                                     key={index}
                                     component="img"
-                                    src={img}
+                                    src={publicPath(img)}
                                     alt={`${project.title} ${index + 1}`}
                                     onClick={() => setSelectedImage(img)}
                                     sx={{

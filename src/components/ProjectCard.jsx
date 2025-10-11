@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, CardContent, CardMedia, Typography, Stack, Link, Box } from '@mui/material'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom';
+import { publicPath } from '../utils/path';
 
 const MotionCard = motion.create(Card)
 
@@ -44,7 +45,7 @@ export default function ProjectCard({ p }) {
                 {p.coverImage ? (
                     <CardMedia
                         component="img"
-                        image={p.coverImage}
+                        image={publicPath(p.coverImage)}
                         alt={p.title}
                         sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
