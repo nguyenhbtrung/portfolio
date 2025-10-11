@@ -13,7 +13,7 @@ export default function Hero() {
                     <Button variant="outlined" href="#contact">Contact Me</Button>
                 </Stack>
             </Box>
-            <Avatar src="/src/assets/avatar2.png" sx={{ width: 180, height: 180 }} />
+            <Avatar src="/avatar2.png" sx={{ width: 180, height: 180 }} />
         </Box>
     )
 }
