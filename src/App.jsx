@@ -4,7 +4,7 @@ import { lightTheme, darkTheme } from './theme'
 import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import ProjectDetail from './pages/ProjectDetail'
 import NotFound from './pages/NotFound'
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <HashRouter>
+      <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<MainLayout darkMode={darkMode} setDarkMode={setDarkMode} />} >
@@ -31,7 +31,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
-      </HashRouter>
+      </BrowserRouter>
 
       {/* 🔔 Toastify Config */}
       <ToastContainer
