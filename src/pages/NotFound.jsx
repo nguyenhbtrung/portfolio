@@ -1,5 +1,9 @@
 import React from 'react'
 import { Box, Typography, Button, Stack } from '@mui/material'
+
+import HomeIcon from '@mui/icons-material/Home'
+import RocketIcon from '@mui/icons-material/RocketLaunch'
+
 import { useNavigate } from 'react-router-dom'
 import { MotionConfig, motion } from 'framer-motion'
 
@@ -41,18 +45,20 @@ export default function NotFound() {
 
                     <Stack direction="row" spacing={2} justifyContent="center">
                         <Button
+                            startIcon={<HomeIcon/>}
                             variant="contained"
                             color="primary"
                             onClick={() => navigate('/')}
                         >
-                            🏠 Back to Home
+                            Back to Home
                         </Button>
                         <Button
+                            startIcon={<RocketIcon/>}
                             variant="outlined"
                             color="primary"
                             onClick={() => navigate('/', { state: { scrollTo: 'projects' } })}
                         >
-                            🚀 See Projects
+                            See Projects
                         </Button>
                     </Stack>
                 </motion.div>
