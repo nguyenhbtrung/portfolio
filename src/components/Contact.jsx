@@ -104,7 +104,7 @@ export default function Contact() {
                     <Tooltip title="LinkedIn">
                         <IconButton
                             color="primary"
-                            href="https://www.linkedin.com/in/trung-nguy%E1%BB%85n-ab7289387/"
+                            href="https://www.linkedin.com/in/nguyenhbtrung/"
                             target="_blank"
                         >
                             <LinkedIn />
