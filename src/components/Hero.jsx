@@ -8,7 +8,7 @@ export default function Hero() {
         <Box id="hero" component={motion.section} py={10} display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems="center" gap={6}>
             <Box flex={1}>
                 <Typography color="primary" variant="h3" fontWeight="bold">Nguyễn Hữu Bảo Trung</Typography>
-                <Typography variant="h6" mt={2}>Intern Web Developer — Focused on React, Node.js & ASP.NET Core</Typography>
+                <Typography variant="h6" mt={2}>Web Developer Intern — Focused on React, Node.js & ASP.NET Core</Typography>
                 <Stack direction="row" spacing={2} mt={4}>
                     <Button
                         variant="contained"
