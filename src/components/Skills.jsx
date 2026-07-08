@@ -109,8 +109,11 @@ const SkillSection = ({ categories }) => (
 export default function Skills() {
     return (
         <Box id="skills" py={8}>
-            <Typography variant="h5" fontWeight={600} gutterBottom>
-                Skills
+            <Typography variant="h4" align='center' gutterBottom>
+                Technical Skills
+            </Typography>
+            <Typography variant='subtitle1' align='center' color="text.secondary" mb={3} gutterBottom>
+                There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain
             </Typography>
 
             {/* Hai cột lớn */}
