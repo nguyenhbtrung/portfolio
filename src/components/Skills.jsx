@@ -114,7 +114,7 @@ export default function Skills() {
             {/* <Typography variant="h4" align='center' gutterBottom>
                 Technical Skills
             </Typography> */}
-            <Typography variant='subtitle1' align='center' color="text.secondary" mb={3} gutterBottom>
+            <Typography align='center' color="text.secondary" mb={3} gutterBottom>
                 There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain
             </Typography>
 

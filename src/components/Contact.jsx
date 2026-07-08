@@ -67,7 +67,7 @@ export default function Contact() {
         >
             <SectionHeading>Contact Me</SectionHeading>
 
-            <Typography variant="body1" color="text.secondary" mb={3}>
+            <Typography color="text.secondary" mb={3}>
                 Feel free to reach out via form or any of the platforms below.
             </Typography>
 
