@@ -33,7 +33,6 @@ export default function App() {
         </Suspense>
       </BrowserRouter>
 
-      {/* 🔔 Toastify Config */}
       <ToastContainer
         position="top-center"
         autoClose={2500}

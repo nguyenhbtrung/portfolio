@@ -11,6 +11,9 @@ const commonComponents = {
         },
     },
     shape: { borderRadius: 8 },
+    typography: {
+        fontFamily: '"Inter", system-ui, -apple-system, sans-serif', 
+    },
 }
 
 export const lightTheme = createTheme({
