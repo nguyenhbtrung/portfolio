@@ -13,6 +13,7 @@ import { GitHub, LinkedIn, Email } from '@mui/icons-material';
 import { motion } from 'framer-motion'; 
 import emailjs from 'emailjs-com';
 import { toast } from 'react-toastify';
+import SectionHeading from './SectionHeader';
 
 export default function Contact() {
     const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -64,9 +65,8 @@ export default function Contact() {
                 color: theme.palette.text.primary,
             }}
         >
-            <Typography variant="h4" gutterBottom>
-                Contact Me
-            </Typography>
+            <SectionHeading>Contact Me</SectionHeading>
+
             <Typography variant="body1" color="text.secondary" mb={3}>
                 Feel free to reach out via form or any of the platforms below.
             </Typography>

@@ -17,6 +17,7 @@ import {
 import { TbBrandCSharp, TbDatabase } from 'react-icons/tb'
 import { MdApi } from 'react-icons/md'
 import { GiPuzzle } from 'react-icons/gi'
+import SectionHeading from './SectionHeader'
 
 const skillCategoriesLeft = [
     {
@@ -109,9 +110,10 @@ const SkillSection = ({ categories }) => (
 export default function Skills() {
     return (
         <Box id="skills" py={8}>
-            <Typography variant="h4" align='center' gutterBottom>
+            <SectionHeading align='center'>Technical Skills</SectionHeading>
+            {/* <Typography variant="h4" align='center' gutterBottom>
                 Technical Skills
-            </Typography>
+            </Typography> */}
             <Typography variant='subtitle1' align='center' color="text.secondary" mb={3} gutterBottom>
                 There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain
             </Typography>
