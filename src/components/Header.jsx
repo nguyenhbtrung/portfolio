@@ -103,6 +103,7 @@ export default function Header({ darkMode, setDarkMode }) {
                         {sections.map((s) => (
                             <Button
                                 key={s}
+                                component='a'
                                 onClick={() => {
                                     if (isProjectDetail && s === 'Projects') {
                                         navigate('/', { state: { scrollTo: 'projects' } })
@@ -185,6 +186,7 @@ export default function Header({ darkMode, setDarkMode }) {
                                             transition={{ delay: 0.1 * index }}
                                         >
                                             <ListItemButton
+                                                component='a'
                                                 onClick={() => {
                                                     if (isProjectDetail && s === 'Projects') {
                                                         navigate('/', { state: { scrollTo: 'projects' } })
