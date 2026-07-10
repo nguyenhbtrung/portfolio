@@ -10,6 +10,7 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
+import BackgroundDecoration from '../components/BackgroundDecoration';
 
 const HomePage = () => {
     const location = useLocation();
@@ -22,6 +23,7 @@ const HomePage = () => {
     }, [location])
     return (
         <>
+            <BackgroundDecoration/>
             <Hero />
             <Divider sx={{ my: 6 }} />
             <About />
