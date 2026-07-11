@@ -8,7 +8,7 @@ export default function BackgroundDecoration() {
         position: 'fixed',
         inset: 0,
         pointerEvents: 'none',
-        zIndex: 0,
+        zIndex: 1000,
         overflow: 'hidden',
       }}
     >
