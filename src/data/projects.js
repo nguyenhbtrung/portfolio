@@ -1,6 +1,7 @@
 export const projects = [
     {
         id: 1,
+        slug: 'gtg-shop',
         title: 'E‑Commerce Platform for Selling Electronic Devices',
         description: 'An e-commerce system for selling electronic devices including a website and mobile app with admin & customer features.',
         fullDescription: 'A full-stack e-commerce platform built with React (Vite, MUI) and .NET 8. It features a responsive UI with dark/light themes, real-time chat via SignalR, JWT authentication, VNPay payment integration, and flexible image storage using Cloudinary or local files.',
@@ -51,6 +52,7 @@ export const projects = [
     },
     {
         id: 2,
+        slug: 'thread-city-2',
         title: 'Social Network Platform',
         description: 'A demo of social networking website that allows users to post, comment, and like posts.',
         fullDescription: 'A demo social networking web application built with React (CRA, MUI) and .NET 8. It supports JWT authentication, seamless API communication, and a modern UI for a smooth user experience.',
@@ -76,6 +78,7 @@ export const projects = [
     },
     {
         id: 3,
+        slug: 'chat-app',
         title: 'Messaging & Video Calling Application (In progress)',
         description: 'A web application that allows users to connect, chat, and make video calls.',
         tech: ['React', 'Node.js'],

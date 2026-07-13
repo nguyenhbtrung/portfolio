@@ -9,9 +9,9 @@ import { projects } from '../data/projects'
 import { publicPath } from '../utils/path'
 
 export default function ProjectDetail() {
-    const { id } = useParams()
+    const { slug } = useParams()
     const navigate = useNavigate()
-    const project = projects.find(p => p.id.toString() === id)
+    const project = projects.find(p => p.slug.toString() === slug)
 
     const [selectedImage, setSelectedImage] = useState(null)
     const thumbnailRef = useRef(null)

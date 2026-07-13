@@ -25,7 +25,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<MainLayout darkMode={darkMode} setDarkMode={setDarkMode} />} >
               <Route index element={<HomePage />} />
-              <Route path="/project/:id" element={<ProjectDetail />} />
+              <Route path="/project/:slug" element={<ProjectDetail />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
