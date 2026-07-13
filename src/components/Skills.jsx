@@ -200,17 +200,15 @@ const categoryCardStyle = {
 export default function Skills() {
   return (
     <Box id="skills" py={8}>
-      <MotionBox>
-        <SectionHeading align="center">
-          Technical Skills
-        </SectionHeading>
+      <SectionHeading align="center">
+        Technical Skills
+      </SectionHeading>
 
-        <Typography align="center" color="text.secondary" gutterBottom>
-          A comprehensive overview of my engineering toolkit. I specialize in
-          building scalable web applications with a focus on type safety,
-          performance, and modern architecture.
-        </Typography>
-      </MotionBox>
+      <Typography align="center" color="text.secondary" gutterBottom>
+        A comprehensive overview of my engineering toolkit. I specialize in
+        building scalable web applications with a focus on type safety,
+        performance, and modern architecture.
+      </Typography>
 
       <Box mt={6}>
         {/* Programming Languages */}
