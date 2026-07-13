@@ -23,7 +23,7 @@ const MotionBox = ({
             component={motion.div} 
             initial={{ opacity: 0, y: 100, ...initial }}
             whileInView={{ opacity: 1, y: 0, ...whileInView }} 
-            viewport={{ margin: "100% 0px -100px 0px", ...viewport }} 
+            viewport={{ margin: "100% 0px -10% 0px", ...viewport }} 
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], ...transition }} 
             {...restProps}
         >
