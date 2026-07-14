@@ -3,6 +3,7 @@ import Header from "../components/Header"
 import ScrollToTop from "../components/ScrollToTop"
 import { Outlet } from "react-router-dom"
 import Footer from "../components/Footer";
+import BackgroundDecoration from "../components/BackgroundDecoration";
 
 const MainLayout = ({ darkMode, setDarkMode }) => {
     return (
@@ -15,6 +16,7 @@ const MainLayout = ({ darkMode, setDarkMode }) => {
             }}
         >
             <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+            <BackgroundDecoration/>
             <Container maxWidth="lg">
                 <ScrollToTop />
                 <Outlet />
