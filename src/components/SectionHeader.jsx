@@ -11,6 +11,7 @@ const SectionHeading = ({ children, ...props }) => {
       component="h2"
       fontSize={{ xs: '1.5rem', md: '2.125rem' }}
       gutterBottom
+      color='primary'
       {...props}
     >
       {children}
