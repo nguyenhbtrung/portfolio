@@ -192,8 +192,9 @@ const categoryCardStyle = {
   borderColor: 'divider',
   transition: '.25s',
   '&:hover': {
-    borderColor: 'primary.dark',
+    borderColor: 'primary.main',
     transform: 'translateY(-4px)',
+    boxShadow: (theme) => `0 10px 25px ${theme.palette.primary.main}15`,
   },
 }
 
