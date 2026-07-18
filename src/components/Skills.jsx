@@ -37,11 +37,14 @@ import PostmanOriginalIcon from '@devicon/react/postman/original';
 import GithubOriginalIcon from '@devicon/react/github/original';
 
 
-import TerminalIcon from '@mui/icons-material/TerminalOutlined';
+// import TerminalIcon from '@mui/icons-material/TerminalOutlined';
+import CodeIcon from '@mui/icons-material/CodeOutlined';
 import LayersIcon from '@mui/icons-material/LayersOutlined';
 import WebIcon from '@mui/icons-material/WebOutlined';
-import DnsIcon from '@mui/icons-material/DnsOutlined';
-import StorageIcon from '@mui/icons-material/StorageOutlined';
+// import DnsIcon from '@mui/icons-material/DnsOutlined';
+import TerminalIcon from '@mui/icons-material/TerminalOutlined';
+// import StorageIcon from '@mui/icons-material/StorageOutlined';
+import DataObjectIcon from '@mui/icons-material/DataObjectOutlined';
 import BuildIcon from '@mui/icons-material/BuildOutlined';
 import ArchitectureIcon from '@mui/icons-material/ArchitectureOutlined';
 
@@ -228,7 +231,7 @@ export default function Skills() {
               alignItems="center"
               mb={3}
             >
-              <TerminalIcon sx={{color: 'primary.light'}} />
+              <CodeIcon sx={{color: 'primary.light'}} />
               <Typography variant="h6">
                 Programming Languages
               </Typography>
@@ -295,7 +298,7 @@ export default function Skills() {
                 }}
               >
                 <Category
-                  icon={<DnsIcon fontSize="small" />}
+                  icon={<TerminalIcon fontSize="small" />}
                   title="Backend"
                   items={backend}
                 />
@@ -308,7 +311,7 @@ export default function Skills() {
                 }}
               >
                 <Category
-                  icon={<StorageIcon fontSize="small" />}
+                  icon={<DataObjectIcon fontSize="small" />}
                   title="Data & ORM"
                   items={dataOrm}
                 />
