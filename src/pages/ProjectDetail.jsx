@@ -47,7 +47,7 @@ import SectionHeading from '../components/SectionHeader';
 
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import { projects } from '../data/projectDetails';
+import { projectDetails, projects } from '../data/projects';
 
 
 const overviewIcon = {
@@ -81,7 +81,12 @@ export default function ProjectDetail() {
     const thumbnailRefs = useRef([]);
 
     const { slug } = useParams();
-    const project = projects.find(p => p.slug.toString() === slug);
+    const overview = projects.find(p => p.slug.toString() === slug);
+    const detail = projectDetails[overview.slug];
+    const project = {
+        ...overview,
+        ...detail
+    }
 
     useEffect(() => {
         const target = thumbnailRefs.current[activeImage];

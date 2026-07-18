@@ -184,7 +184,7 @@ export const projects = [
     ],
   },
   {
-    slug: 'game-rc',
+    slug: 'game-rs',
     category: 'Website / Recomendation System',
     title: 'Game Recommendation System (2024)',
     description:
