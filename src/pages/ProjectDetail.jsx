@@ -438,38 +438,40 @@ export default function ProjectDetail() {
                     </IconButton>
 
                     <Stack
-                        // ref={sliderRef}
                         direction="row"
                         spacing={2}
                         sx={(theme) => ({
                             overflowX: 'auto',
                             pb: 1,
 
-                            // scrollbarWidth: 'thin',
-                            // scrollbarColor: `${alpha(theme.palette.primary.main, 0.4)} ${alpha(theme.palette.primary.main, 0.1)}`,
                             scrollbarColor: theme.palette.mode === 'dark' 
                                 ? `${theme.palette.grey[700]} ${theme.palette.grey[900]}` 
                                 : `${theme.palette.grey[400]} ${theme.palette.grey[100]}`,
 
-                            // '&::-webkit-scrollbar': {
-                            //     height: 12
-                            // },
+                            '&::-webkit-scrollbar': {
+                                height: 10,
+                            },
 
-                            // '&::-webkit-scrollbar-track': {
-                            //     background: 'rgba(255,255,255,.05)',
-                            //     borderRadius: 999
-                            // },
+                            '&::-webkit-scrollbar-track': {
+                                background:
+                                    theme.palette.mode === 'dark'
+                                        ? theme.palette.grey[900]
+                                        : theme.palette.grey[100],
+                            },
+                            '&::-webkit-scrollbar-thumb': {
+                                background:
+                                    theme.palette.mode === 'dark'
+                                        ? theme.palette.grey[700]
+                                        : theme.palette.grey[400],
+                                borderRadius: 0.5,
+                            },
+                            '&::-webkit-scrollbar-thumb:hover': {
+                                background:
+                                    theme.palette.mode === 'dark'
+                                        ? theme.palette.grey[600]
+                                        : theme.palette.grey[500],
+                            },
 
-                            // '&::-webkit-scrollbar-thumb': {
-                            //     background:
-                            //         'linear-gradient(90deg, #5b6cff 0%, #8a7dff 100%)',
-                            //     borderRadius: 999
-                            // },
-
-                            // '&::-webkit-scrollbar-thumb:hover': {
-                            //     background:
-                            //         'linear-gradient(90deg, #7080ff 0%, #9a8fff 100%)'
-                            // }
                         })}
                     >
                         {project.gallery.map((item, index) => (
