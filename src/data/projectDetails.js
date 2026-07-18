@@ -41,6 +41,10 @@ export const projects = [
                 image: '/projectImages/it-hub/learning2.png'
             },
             {
+                name: 'https://ithub.vercel.app/courses/:slug/learn/steps/:id',
+                image: '/projectImages/it-hub/learning3.png'
+            },
+            {
                 name: 'https://ithub.vercel.app/categories/:slug',
                 image: '/projectImages/it-hub/categories.png'
             },
@@ -67,6 +71,10 @@ export const projects = [
             {
                 name: 'https://ithub.vercel.app/instructor/courses/:id/edit/content/steps/:id',
                 image: '/projectImages/it-hub/course-edit-content-step.png'
+            },
+            {
+                name: 'https://ithub.vercel.app/admin',
+                image: '/projectImages/it-hub/admin.png'
             },
         ],
 
