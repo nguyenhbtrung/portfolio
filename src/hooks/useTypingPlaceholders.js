@@ -2,14 +2,26 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 const FRAME_TIME = 16;
 
+const HUMANIZE = {
+    delayBetweenFields: [80,180],
+
+    typingVariation: 0.2,
+
+    deletingVariation:0.2
+}
+
 const randomBetween = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
-const randomSpeed = (base) =>
-    randomBetween(
-        Math.round(base * 0.8),
-        Math.round(base * 1.2)
+const randomSpeed = (base, variation = 0.2) => {
+    const minSpeed = 1 - variation;
+    const maxSpeed = 1 + variation;
+
+    return randomBetween(
+        Math.round(base * minSpeed),
+        Math.round(base * maxSpeed)
     );
+} 
 
 export function useTypingPlaceholders(
     placeholderSets,
@@ -40,6 +52,9 @@ export function useTypingPlaceholders(
         const createFieldStates = () => {
             const states = {};
 
+            const delayMin = HUMANIZE.delayBetweenFields[0];
+            const delayMax = HUMANIZE.delayBetweenFields[1];
+
             let accumulatedDelay = 0;
 
             fieldKeys.forEach((key) => {
@@ -48,10 +63,10 @@ export function useTypingPlaceholders(
 
                     startDelay: accumulatedDelay,
 
-                    speed: randomSpeed(typingSpeed)
+                    speed: randomSpeed(typingSpeed, HUMANIZE.typingVariation)
                 };
 
-                accumulatedDelay += randomBetween(80, 180);
+                accumulatedDelay += randomBetween(delayMin, delayMax);
             });
 
             return states;
@@ -59,45 +74,42 @@ export function useTypingPlaceholders(
 
         fieldStates.current = createFieldStates();
 
-        const tick = () => {
-            const current =
-                placeholderSets[currentSetIndex.current];
+        const updateField = (state, target) => {
+            if (state.startDelay > 0) {
+                state.startDelay -= FRAME_TIME;
+                return;
+            }
 
+            state.speed -= FRAME_TIME;
+
+            if (state.speed > 0) return;
+
+            if (!isDeleting.current) {
+                if (state.charIndex < target.length) {
+                    state.charIndex++;
+                }
+            } else {
+                if (state.charIndex > 0) {
+                    state.charIndex--;
+                }
+            }
+
+            state.speed = randomSpeed(
+                isDeleting.current
+                    ? deletingSpeed
+                    : typingSpeed,
+                HUMANIZE.deletingVariation
+            );
+        };
+
+        const render = (current) => {
             const next = {};
-
             let allFinished = true;
 
             fieldKeys.forEach((key) => {
                 const state = fieldStates.current[key];
 
-                if (state.startDelay > 0) {
-                    state.startDelay -= FRAME_TIME;
-                } else {
-                    state.speed -= FRAME_TIME;
-
-                    if (state.speed <= 0) {
-                        const target = current[key];
-
-                        if (!isDeleting.current) {
-                            if (
-                                state.charIndex <
-                                target.length
-                            ) {
-                                state.charIndex++;
-                            }
-                        } else {
-                            if (state.charIndex > 0) {
-                                state.charIndex--;
-                            }
-                        }
-
-                        state.speed = randomSpeed(
-                            isDeleting.current
-                                ? deletingSpeed
-                                : typingSpeed
-                        );
-                    }
-                }
+                updateField(state, current[key]);
 
                 next[key] = current[key].substring(
                     0,
@@ -105,10 +117,7 @@ export function useTypingPlaceholders(
                 );
 
                 if (!isDeleting.current) {
-                    if (
-                        state.charIndex <
-                        current[key].length
-                    ) {
+                    if (state.charIndex < current[key].length) {
                         allFinished = false;
                     }
                 } else {
@@ -120,6 +129,10 @@ export function useTypingPlaceholders(
 
             setPlaceholders(next);
 
+            return allFinished;
+        };
+
+        const schedule = (allFinished, createFieldStates) => {
             let delay = FRAME_TIME;
 
             if (allFinished) {
@@ -140,8 +153,19 @@ export function useTypingPlaceholders(
                 }
             }
 
-            timeoutRef.current =
-                setTimeout(tick, delay);
+            timeoutRef.current = setTimeout(
+                tick,
+                delay
+            );
+        };
+
+        const tick = () => {
+            const current =
+                placeholderSets[currentSetIndex.current];
+
+            const allFinished = render(current);
+
+            schedule(allFinished, createFieldStates);
         };
 
         tick();
