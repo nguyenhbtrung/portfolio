@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
+const FRAME_TIME = 16;
+
 const randomBetween = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -69,9 +71,9 @@ export function useTypingPlaceholders(
                 const state = fieldStates.current[key];
 
                 if (state.startDelay > 0) {
-                    state.startDelay -= 16;
+                    state.startDelay -= FRAME_TIME;
                 } else {
-                    state.speed -= 16;
+                    state.speed -= FRAME_TIME;
 
                     if (state.speed <= 0) {
                         const target = current[key];
@@ -118,7 +120,7 @@ export function useTypingPlaceholders(
 
             setPlaceholders(next);
 
-            let delay = 16;
+            let delay = FRAME_TIME;
 
             if (allFinished) {
                 if (!isDeleting.current) {
