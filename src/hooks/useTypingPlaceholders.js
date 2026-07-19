@@ -1,4 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+const randomBetween = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1)) + min;
+
+const randomSpeed = (base) =>
+    randomBetween(
+        Math.round(base * 0.8),
+        Math.round(base * 1.2)
+    );
 
 export function useTypingPlaceholders(
     placeholderSets,
@@ -9,71 +18,135 @@ export function useTypingPlaceholders(
         pauseBeforeNext = 500
     } = {}
 ) {
+    const fieldKeys = useMemo(() => {
+        if (!placeholderSets?.length) return [];
+        return Object.keys(placeholderSets[0]);
+    }, [placeholderSets]);
+
     const [placeholders, setPlaceholders] = useState({});
 
     const currentSetIndex = useRef(0);
-    const charIndex = useRef(0);
     const isDeleting = useRef(false);
-    const timeoutRef = useRef(null);
+
+    const timeoutRef = useRef();
+
+    const fieldStates = useRef({});
 
     useEffect(() => {
         if (!placeholderSets?.length) return;
 
-        const type = () => {
-            const current = placeholderSets[currentSetIndex.current];
+        const createFieldStates = () => {
+            const states = {};
 
-            const values = Object.values(current);
+            let accumulatedDelay = 0;
 
-            const maxChars = Math.max(
-                ...values.map((text) => text.length)
-            );
+            fieldKeys.forEach((key) => {
+                states[key] = {
+                    charIndex: 0,
 
-            const nextPlaceholders = {};
+                    startDelay: accumulatedDelay,
 
-            Object.entries(current).forEach(([key, value]) => {
-                nextPlaceholders[key] = value.substring(
-                    0,
-                    charIndex.current
-                );
+                    speed: randomSpeed(typingSpeed)
+                };
+
+                accumulatedDelay += randomBetween(80, 180);
             });
 
-            setPlaceholders(nextPlaceholders);
+            return states;
+        };
 
-            let speed = isDeleting.current
-                ? deletingSpeed
-                : typingSpeed;
+        fieldStates.current = createFieldStates();
 
-            if (
-                !isDeleting.current &&
-                charIndex.current === maxChars
-            ) {
-                isDeleting.current = true;
-                speed = pauseAfterTyping;
-            } else if (
-                isDeleting.current &&
-                charIndex.current === 0
-            ) {
-                isDeleting.current = false;
-                currentSetIndex.current =
-                    (currentSetIndex.current + 1) %
-                    placeholderSets.length;
+        const tick = () => {
+            const current =
+                placeholderSets[currentSetIndex.current];
 
-                speed = pauseBeforeNext;
+            const next = {};
+
+            let allFinished = true;
+
+            fieldKeys.forEach((key) => {
+                const state = fieldStates.current[key];
+
+                if (state.startDelay > 0) {
+                    state.startDelay -= 16;
+                } else {
+                    state.speed -= 16;
+
+                    if (state.speed <= 0) {
+                        const target = current[key];
+
+                        if (!isDeleting.current) {
+                            if (
+                                state.charIndex <
+                                target.length
+                            ) {
+                                state.charIndex++;
+                            }
+                        } else {
+                            if (state.charIndex > 0) {
+                                state.charIndex--;
+                            }
+                        }
+
+                        state.speed = randomSpeed(
+                            isDeleting.current
+                                ? deletingSpeed
+                                : typingSpeed
+                        );
+                    }
+                }
+
+                next[key] = current[key].substring(
+                    0,
+                    state.charIndex
+                );
+
+                if (!isDeleting.current) {
+                    if (
+                        state.charIndex <
+                        current[key].length
+                    ) {
+                        allFinished = false;
+                    }
+                } else {
+                    if (state.charIndex > 0) {
+                        allFinished = false;
+                    }
+                }
+            });
+
+            setPlaceholders(next);
+
+            let delay = 16;
+
+            if (allFinished) {
+                if (!isDeleting.current) {
+                    isDeleting.current = true;
+                    delay = pauseAfterTyping;
+                } else {
+                    isDeleting.current = false;
+
+                    currentSetIndex.current =
+                        (currentSetIndex.current + 1) %
+                        placeholderSets.length;
+
+                    fieldStates.current =
+                        createFieldStates();
+
+                    delay = pauseBeforeNext;
+                }
             }
 
-            charIndex.current = isDeleting.current
-                ? Math.max(charIndex.current - 1, 0)
-                : Math.min(charIndex.current + 1, maxChars);
-
-            timeoutRef.current = setTimeout(type, speed);
+            timeoutRef.current =
+                setTimeout(tick, delay);
         };
 
-        type();
+        tick();
 
-        return () => {
-            clearTimeout(timeoutRef.current);
-        };
+        return () => clearTimeout(timeoutRef.current);
     }, [
+        fieldKeys,
         placeholderSets,
         typingSpeed,
         deletingSpeed,
