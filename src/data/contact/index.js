@@ -1,0 +1,1 @@
+export { contactPlaceholders } from './contactPlaceholders'
