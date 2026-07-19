@@ -1,0 +1,1 @@
+export { useTypingPlaceholders } from './useTypingPlaceholders'
