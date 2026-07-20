@@ -23,14 +23,19 @@ export function ContactForm() {
         message: ''
     });
 
-    const { placeholders, placeholderOpacity, fadeDuration } = useTypingPlaceholders(
-        contactPlaceholders, 
-        { 
-            typingSpeed: 16,
-            pauseAfterTyping: 5000,
-            fadeOut: true,
-            fadeDuration: 400, 
-        });
+    const hasInput = Object.values(form).some(value => value.trim() !== '');
+
+    const {
+        placeholders,
+        placeholderOpacity,
+        fadeDuration,
+    } = useTypingPlaceholders(contactPlaceholders, {
+        typingSpeed: 16,
+        pauseAfterTyping: 5000,
+        fadeOut: true,
+        fadeDuration: 400,
+        paused: hasInput,
+    });
 
     const textfieldStyle = {
         "& .MuiInputBase-input::placeholder": {

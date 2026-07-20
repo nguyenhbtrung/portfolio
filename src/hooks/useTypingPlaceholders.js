@@ -33,7 +33,8 @@ export function useTypingPlaceholders(
         pauseAfterTyping = 3000,
         pauseBeforeNext = 500,
         fadeOut = false,
-        fadeDuration = 250
+        fadeDuration = 250,
+        paused = false,
     } = {}
 ) {
     const fieldKeys = useMemo(() => {
@@ -51,6 +52,15 @@ export function useTypingPlaceholders(
     const fadingRef = useRef(false);
 
     const fieldStates = useRef({});
+
+    const waitingForResumeRef = useRef(false);
+
+    const pausedRef = useRef(paused);
+    const tickRef = useRef();
+
+    useEffect(() => {
+        pausedRef.current = paused;
+    }, [paused]);
 
     useEffect(() => {
         if (!placeholderSets?.length) return;
@@ -159,9 +169,22 @@ export function useTypingPlaceholders(
 
             if (!isDeleting.current) {
 
+                // If user is typing
+                // Freeze after current cycle
+                if (pausedRef.current) {
+                    waitingForResumeRef.current = true;
+                    return;
+                }
+
                 if (fadeOut) {
 
                     timeoutRef.current = setTimeout(() => {
+
+                        // Double-check condition to prevent edge case where pause triggers exactly when timeout executes
+                        if (pausedRef.current) {
+                            waitingForResumeRef.current = true;
+                            return;
+                        }
 
                         fadingRef.current = true;
 
@@ -197,9 +220,8 @@ export function useTypingPlaceholders(
 
                 isDeleting.current = true;
                 delay = pauseAfterTyping;
-            }
-
-            else {
+                
+            } else {
 
                 isDeleting.current = false;
 
@@ -213,6 +235,7 @@ export function useTypingPlaceholders(
                 delay = pauseBeforeNext;
             }
 
+            // FIXME: 1 more cycle before freeze
             timeoutRef.current = setTimeout(
                 tick,
                 delay
@@ -230,6 +253,8 @@ export function useTypingPlaceholders(
             schedule(allFinished, createFieldStates);
         };
 
+        tickRef.current = tick;
+
         tick();
 
         return () => clearTimeout(timeoutRef.current);
@@ -243,6 +268,20 @@ export function useTypingPlaceholders(
         fadeOut,
         fadeDuration
     ]);
+
+    useEffect(() => {
+
+        if (!waitingForResumeRef.current)
+            return;
+
+        if (paused)
+            return;
+
+        waitingForResumeRef.current = false;
+
+        tickRef.current?.();
+
+    }, [paused, pauseAfterTyping]);
 
     return {
         placeholders,
