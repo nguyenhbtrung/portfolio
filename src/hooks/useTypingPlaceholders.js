@@ -29,7 +29,9 @@ export function useTypingPlaceholders(
         typingSpeed = 60,
         deletingSpeed = 30,
         pauseAfterTyping = 3000,
-        pauseBeforeNext = 500
+        pauseBeforeNext = 500,
+        fadeOut = false,
+        fadeDuration = 250
     } = {}
 ) {
     const fieldKeys = useMemo(() => {
@@ -38,11 +40,13 @@ export function useTypingPlaceholders(
     }, [placeholderSets]);
 
     const [placeholders, setPlaceholders] = useState({});
+    const [placeholderOpacity, setPlaceholderOpacity] = useState(0.42);
 
     const currentSetIndex = useRef(0);
     const isDeleting = useRef(false);
 
     const timeoutRef = useRef();
+    const fadingRef = useRef(false);
 
     const fieldStates = useRef({});
 
@@ -135,22 +139,65 @@ export function useTypingPlaceholders(
         const schedule = (allFinished, createFieldStates) => {
             let delay = FRAME_TIME;
 
-            if (allFinished) {
-                if (!isDeleting.current) {
-                    isDeleting.current = true;
-                    delay = pauseAfterTyping;
-                } else {
-                    isDeleting.current = false;
+            if (!allFinished) {
+                timeoutRef.current = setTimeout(tick, delay);
+                return;
+            }
 
-                    currentSetIndex.current =
-                        (currentSetIndex.current + 1) %
-                        placeholderSets.length;
+            if (!isDeleting.current) {
 
-                    fieldStates.current =
-                        createFieldStates();
+                if (fadeOut) {
 
-                    delay = pauseBeforeNext;
+                    timeoutRef.current = setTimeout(() => {
+
+                        fadingRef.current = true;
+
+                        setPlaceholderOpacity(0);
+
+                        setTimeout(() => {
+
+                            currentSetIndex.current =
+                                (currentSetIndex.current + 1) %
+                                placeholderSets.length;
+
+                            fieldStates.current =
+                                createFieldStates();
+
+                            setPlaceholders({});
+
+                            setPlaceholderOpacity(0.42);
+
+                            fadingRef.current = false;
+
+                            // timeoutRef.current = setTimeout(
+                            //     tick,
+                            //     pauseBeforeNext
+                            // );
+                            tick();
+
+                        }, fadeDuration);
+
+                    }, pauseAfterTyping);
+
+                    return;
                 }
+
+                isDeleting.current = true;
+                delay = pauseAfterTyping;
+            }
+
+            else {
+
+                isDeleting.current = false;
+
+                currentSetIndex.current =
+                    (currentSetIndex.current + 1) %
+                    placeholderSets.length;
+
+                fieldStates.current =
+                    createFieldStates();
+
+                delay = pauseBeforeNext;
             }
 
             timeoutRef.current = setTimeout(
@@ -160,6 +207,8 @@ export function useTypingPlaceholders(
         };
 
         const tick = () => {
+            if (fadingRef.current) return;
+
             const current =
                 placeholderSets[currentSetIndex.current];
 
@@ -177,8 +226,14 @@ export function useTypingPlaceholders(
         typingSpeed,
         deletingSpeed,
         pauseAfterTyping,
-        pauseBeforeNext
+        pauseBeforeNext,
+        fadeOut,
+        fadeDuration
     ]);
 
-    return placeholders;
+    return {
+        placeholders,
+        placeholderOpacity,
+        fadeDuration,
+    }
 }
