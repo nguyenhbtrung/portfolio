@@ -23,7 +23,21 @@ export function ContactForm() {
         message: ''
     });
 
-    const placeholders = useTypingPlaceholders(contactPlaceholders);
+    const { placeholders, placeholderOpacity, fadeDuration } = useTypingPlaceholders(
+        contactPlaceholders, 
+        { 
+            typingSpeed: 16,
+            pauseAfterTyping: 5000,
+            fadeOut: true,
+            fadeDuration: 400, 
+        });
+
+    const textfieldStyle = {
+        "& .MuiInputBase-input::placeholder": {
+            opacity: placeholderOpacity, 
+            transition: `opacity ${fadeDuration}ms ease`,   
+        },
+    }
 
     const handleChange = (e) => {
         setForm((prev) => ({
@@ -89,6 +103,7 @@ export function ContactForm() {
                         value={form.name}
                         onChange={handleChange}
                         required
+                        sx={textfieldStyle}
                     />
                 </Grid>
 
@@ -121,6 +136,7 @@ export function ContactForm() {
                         value={form.email}
                         onChange={handleChange}
                         required
+                        sx={textfieldStyle}
                     />
                 </Grid>
 
@@ -145,6 +161,7 @@ export function ContactForm() {
                         placeholder={form.subject ? '' : placeholders.subject}
                         value={form.subject}
                         onChange={handleChange}
+                        sx={textfieldStyle}
                     />
                 </Grid>
 
@@ -178,6 +195,7 @@ export function ContactForm() {
                         value={form.message}
                         onChange={handleChange}
                         required
+                        sx={textfieldStyle}
                     />
                 </Grid>
 
