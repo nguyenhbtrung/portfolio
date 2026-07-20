@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-const FRAME_TIME = 16;
+const FRAME_TIME = 1;
 
 const HUMANIZE = {
     delayBetweenFields: [80,180],
@@ -22,6 +22,8 @@ const randomSpeed = (base, variation = 0.2) => {
         Math.round(base * maxSpeed)
     );
 } 
+
+const getNow = () => performance.now();
 
 export function useTypingPlaceholders(
     placeholderSets,
@@ -62,12 +64,18 @@ export function useTypingPlaceholders(
             let accumulatedDelay = 0;
 
             fieldKeys.forEach((key) => {
+                const now = getNow();
+
                 states[key] = {
                     charIndex: 0,
 
-                    startDelay: accumulatedDelay,
-
-                    speed: randomSpeed(typingSpeed, HUMANIZE.typingVariation)
+                    nextTime:
+                        now +
+                        accumulatedDelay +
+                        randomSpeed(
+                            typingSpeed,
+                            HUMANIZE.typingVariation
+                        )
                 };
 
                 accumulatedDelay += randomBetween(delayMin, delayMax);
@@ -78,15 +86,8 @@ export function useTypingPlaceholders(
 
         fieldStates.current = createFieldStates();
 
-        const updateField = (state, target) => {
-            if (state.startDelay > 0) {
-                state.startDelay -= FRAME_TIME;
-                return;
-            }
-
-            state.speed -= FRAME_TIME;
-
-            if (state.speed > 0) return;
+        const updateField = (state, target, now) => {
+            if (now < state.nextTime) return;
 
             if (!isDeleting.current) {
                 if (state.charIndex < target.length) {
@@ -98,22 +99,25 @@ export function useTypingPlaceholders(
                 }
             }
 
-            state.speed = randomSpeed(
+            state.nextTime += randomSpeed(
                 isDeleting.current
                     ? deletingSpeed
                     : typingSpeed,
-                HUMANIZE.deletingVariation
+                isDeleting.current
+                    ? HUMANIZE.deletingVariation
+                    : HUMANIZE.typingVariation
             );
         };
 
         const render = (current) => {
+            const now = getNow();
             const next = {};
             let allFinished = true;
 
             fieldKeys.forEach((key) => {
                 const state = fieldStates.current[key];
 
-                updateField(state, current[key]);
+                updateField(state, current[key], now);
 
                 next[key] = current[key].substring(
                     0,
@@ -137,7 +141,16 @@ export function useTypingPlaceholders(
         };
 
         const schedule = (allFinished, createFieldStates) => {
-            let delay = FRAME_TIME;
+            const nextTick = Math.min(
+                ...Object.values(fieldStates.current).map(
+                    field => field.nextTime
+                )
+            );
+
+            let delay = Math.max(
+                0,
+                nextTick - performance.now()
+            );
 
             if (!allFinished) {
                 timeoutRef.current = setTimeout(tick, delay);
