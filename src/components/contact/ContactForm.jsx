@@ -56,11 +56,24 @@ export function ContactForm() {
 
         setStatus({ loading: true });
 
+        const templateParams = {
+            name: form.name,
+            email: form.email,
+            subject: form.subject,
+            message: form.message,
+
+            sent_at: new Date().toLocaleString(),
+
+            website: window.location.origin,
+
+            browser: navigator.userAgent
+        };
+
         emailjs
             .send(
                 import.meta.env.VITE_EMAIL_SERVICE_ID,
                 import.meta.env.VITE_EMAIL_TEMPLATE_ID,
-                form,
+                templateParams,
                 import.meta.env.VITE_EMAIL_PUBLIC_KEY
             )
             .then(() => {
