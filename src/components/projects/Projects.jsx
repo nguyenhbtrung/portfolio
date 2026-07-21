@@ -5,12 +5,12 @@ import {
   Typography,
 } from '@mui/material';
 // import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-import SectionHeading from './SectionHeader';
-import MotionBox from './MotionBox';
-import ProjectCard from './ProjectCard';
-import { projects } from '../data/projects';
+import SectionHeading from '../SectionHeader';
+import MotionBox from '../MotionBox';
+import { ProjectCard } from './ProjectCard';
+import { projects } from '../../data/projects';
 
-export default function Projects() {
+export function Projects() {
   return (
     <Box
       id="projects"
