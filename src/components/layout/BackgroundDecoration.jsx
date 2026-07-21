@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-export default function BackgroundDecoration() {
+export function BackgroundDecoration() {
   return (
     <Box
       sx={{
