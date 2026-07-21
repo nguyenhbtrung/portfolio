@@ -1,13 +1,14 @@
 import { ThemeProvider, CssBaseline, Container, Divider, Box } from '@mui/material'
 import 'react-toastify/dist/ReactToastify.css'
 
-import Hero from '../components/Hero';
 import About from '../components/About';
 import Skills from '../components/Skills';
 import Projects from '../components/Projects';
-import { Contact } from '../components/contact';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
+
+import { Hero } from '../components/hero';
+import { Contact } from '../components/contact';
 
 const HomePage = () => {
     const location = useLocation();

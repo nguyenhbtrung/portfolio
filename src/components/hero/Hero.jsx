@@ -3,9 +3,9 @@ import { Box, Typography, Button, Stack, Avatar } from '@mui/material'
 import FileDownloadIcon from '@mui/icons-material/FileDownloadOutlined'
 
 import { motion } from 'framer-motion'
-import { publicPath } from '../utils/path'
+import { publicPath } from '../../utils/path'
 
-export default function Hero() {
+export function Hero() {
     return (
         <Box id="hero" component={motion.section} py={10} display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems="center" gap={6}>
             <Box flex={1}>
