@@ -21,7 +21,7 @@ import ArchitectureIcon from '@mui/icons-material/ArchitectureOutlined';
 
 import { LuDatabase } from 'react-icons/lu';
 
-import SectionHeading from '../SectionHeader';
+import SectionHeading from '../SectionHeading';
 import MotionBox from '../MotionBox';
 
 import { Category } from './Category';

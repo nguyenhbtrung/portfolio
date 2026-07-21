@@ -11,7 +11,7 @@ import {
     LinkedIn,
     Email
 } from '@mui/icons-material';
-import SectionHeading from '../SectionHeader';
+import SectionHeading from '../SectionHeading';
 import { motion } from 'framer-motion';
 import { ContactForm } from './ContactForm';
 

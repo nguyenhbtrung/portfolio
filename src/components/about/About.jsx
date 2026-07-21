@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Box } from '@mui/material'
 import { motion } from 'framer-motion'
-import SectionHeading from '../SectionHeader'
+import SectionHeading from '../SectionHeading'
 
 export function About() {
     return (

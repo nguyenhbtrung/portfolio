@@ -5,7 +5,7 @@ import {
   Typography,
 } from '@mui/material';
 // import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-import SectionHeading from '../SectionHeader';
+import SectionHeading from '../SectionHeading';
 import MotionBox from '../MotionBox';
 import { ProjectCard } from './ProjectCard';
 import { projects } from '../../data/projects';
