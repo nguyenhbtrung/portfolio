@@ -16,7 +16,7 @@ export default function Hero() {
                         startIcon={<FileDownloadIcon />}
                         variant="contained"
                         component="a"
-                        href={publicPath("/NguyenTrung-CV.pdf")}
+                        href={publicPath("/Nguyen_Trung.pdf")}
                         download
                     >
                         Download CV
