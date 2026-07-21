@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Typography, Stack, Link } from '@mui/material'
 import { GitHub, LinkedIn, Email, LocationOn } from '@mui/icons-material'
 
-export default function Footer() {
+export function Footer() {
     const year = new Date().getFullYear()
 
     return (

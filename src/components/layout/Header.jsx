@@ -15,11 +15,11 @@ import {
 import { GitHub, LinkedIn, Email, Menu as MenuIcon, Close } from '@mui/icons-material'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocation, useNavigate } from 'react-router-dom'
-import ThemeToggle from './ThemeToggle'
-import { publicPath } from '../utils/path'
-import { ElevationScrollWrapper } from './ElevationScrollWrapper'
+import ThemeToggle from '../ThemeToggle'
+import { publicPath } from '../../utils/path'
+import { ElevationScrollWrapper } from '../ElevationScrollWrapper'
 
-export default function Header({ darkMode, setDarkMode }) {
+export function Header({ darkMode, setDarkMode }) {
     const [openDrawer, setOpenDrawer] = useState(false)
     const theme = useTheme()
     const location = useLocation()

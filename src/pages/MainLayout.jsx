@@ -1,9 +1,8 @@
 import { Box, Container } from "@mui/material"
-import Header from "../components/Header"
 import ScrollToTop from "../components/ScrollToTop"
 import { Outlet } from "react-router-dom"
-import Footer from "../components/Footer";
 import BackgroundDecoration from "../components/BackgroundDecoration";
+import { Footer, Header } from "../components/layout";
 
 const MainLayout = ({ darkMode, setDarkMode }) => {
     return (
