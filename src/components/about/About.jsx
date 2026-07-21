@@ -1,9 +1,9 @@
 import React from 'react'
 import { Typography, Box } from '@mui/material'
 import { motion } from 'framer-motion'
-import SectionHeading from './SectionHeader'
+import SectionHeading from '../SectionHeader'
 
-export default function About() {
+export function About() {
     return (
         <Box id="about" py={8} component={motion.div} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.6 }}>
             <SectionHeading>About Me</SectionHeading>
