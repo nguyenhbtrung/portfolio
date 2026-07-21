@@ -48,6 +48,7 @@ import SectionHeading from '../components/SectionHeading';
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import { projectDetails, projects } from '../data/projects';
+import { publicPath } from '../utils/path';
 
 
 const overviewIcon = {
@@ -342,7 +343,7 @@ export default function ProjectDetail() {
                     >
                         <Box
                             component="img"
-                            src={project.gallery[activeImage].image}
+                            src={publicPath(project.gallery[activeImage].image)}
                             alt={project.gallery[activeImage].name}
                             sx={{
                                 width: '100%',
@@ -505,7 +506,7 @@ export default function ProjectDetail() {
                             >
                                 <Box
                                     component="img"
-                                    src={item.image}
+                                    src={publicPath(item.image)}
                                     alt={item.name}
                                     sx={{
                                         width: '100%',
@@ -526,7 +527,7 @@ export default function ProjectDetail() {
                 close={() => setLightboxOpen(false)}
                 index={activeImage}
                 slides={project.gallery.map((image) => ({
-                    src: image.image
+                    src: publicPath(image.image)
                 }))}
                 plugins={[
                     Zoom,

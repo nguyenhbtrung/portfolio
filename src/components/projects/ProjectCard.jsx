@@ -12,6 +12,7 @@ import {
 // import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
 import { useNavigate } from 'react-router-dom';
+import { publicPath } from '../../utils/path';
 
 export function ProjectCard({ project }) {
   const navigate = useNavigate();
@@ -122,7 +123,7 @@ export function ProjectCard({ project }) {
 
           <Box
             component="img"
-            src={project.image}
+            src={publicPath(project.image)}
             alt={project.title}
             sx={{
               width: '100%',
