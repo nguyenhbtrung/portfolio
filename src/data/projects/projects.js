@@ -199,3 +199,24 @@ export const projects = [
     ],
   },
 ];
+
+export const archiveProjects = [
+  {
+    slug: 'thread-city',
+    category: 'Web Application',
+    title: 'Thread City 2',
+    description:
+      'A "social network" demo web application with CRUD and infinite scrolling features.',
+    image: '/projectImages/thread-city/home.png',
+    liveDemo: '/',
+  },
+  {
+    slug: 'portfolio',
+    category: 'website',
+    title: 'Portfolio',
+    description:
+      'A modern personal portfolio to showcase a developer’s background, skills, projects, and contact information.',
+    image: '/projectImages/portfolio/home.png',
+    liveDemo: '/',
+  },
+];
