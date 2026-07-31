@@ -56,64 +56,77 @@ export function Projects() {
         ))}
       </Grid>
 
-      <Box mt={14}>
-        <Stack
-          spacing={1}
-          alignItems="center"
-          mb={6}
-        >
-          <Button
-            disableRipple
-            onClick={() => setExpanded((v) => !v)}
-            sx={{
-              textTransform: 'uppercase',
-              letterSpacing: 2,
-              color: 'text.secondary',
+      <Box mt={6}>
+        <Stack 
+          spacing={0} 
+          alignItems="center" 
+          sx={{ 
+            mb: expanded ? 6 : 0, 
+            transition: 'all .35s ease',
+            '&:hover .decorator': {
+              opacity: 1,
+              width: 60,
+              boxShadow: (theme) =>
+                `0 0 8px ${theme.palette.primary.main},
+                0 0 18px ${theme.palette.primary.main}`,
+            },
 
-              '&:hover': {
-                bgcolor: 'transparent',
-                color: 'text.primary',
-              },
-            }}
-          >
-            <Stack
-              direction="row"
-              spacing={2}
-              alignItems="center"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 1,
-                  bgcolor: 'primary.main',
-                  opacity: .4,
-                }}
-              />
+            '&:hover .expandIcon': {
+              opacity: 1,
+              filter: (theme) =>
+                `drop-shadow(0 0 6px ${theme.palette.primary.main})
+                drop-shadow(0 0 12px ${theme.palette.primary.main})`,
+            },
+          }}>
+        <Button
+          disableRipple
+          onClick={() => setExpanded((v) => !v)}
+          sx={{
+            // textTransform: 'uppercase',
+            letterSpacing: 2,
+            color: 'text.secondary',
+            bgcolor: 'transparent',
 
-              View More Projects
+            '& .decorator': {
+              width: 40,
+              height: 2,
+              borderRadius: 999,
+              bgcolor: 'primary.main',
+              opacity: 0.35,
+              transition: 'all .35s ease',
+            },
 
-              <Box
-                sx={{
-                  width: 40,
-                  height: 1,
-                  bgcolor: 'primary.main',
-                  opacity: .4,
-                }}
-              />
-            </Stack>
-          </Button>
-
-          <ExpandMoreRoundedIcon
-            sx={{
+            '& .expandIcon': {
               color: 'primary.main',
-              opacity: .6,
-              transition: '.3s',
-              transform: expanded
-                ? 'rotate(180deg)'
-                : 'rotate(0)',
-            }}
-          />
-        </Stack>
+              opacity: 0.6,
+              transition: 'all .35s ease',
+            },
+
+            '&:hover': {
+              bgcolor: 'transparent',
+              color: 'text.primary',
+            },
+          }}
+        >
+          <Stack direction="row" gap={2} alignItems="center">
+            <Box className="decorator" />
+
+            View More Projects
+
+            <Box className="decorator" />
+          </Stack>
+        </Button>
+
+        <ExpandMoreRoundedIcon
+          className="expandIcon"
+          sx={{
+            color: 'primary.main',
+            opacity: 0.35,
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'all .35s ease',
+          }}
+        />
+      </Stack>
 
         <Collapse in={expanded}>
           <Grid container spacing={3}>
@@ -122,7 +135,7 @@ export function Projects() {
                 key={project.slug}
                 size={{
                   xs: 12,
-                  lg: 6,
+                  md: 6,
                 }}
               >
                 <ProjectArchiveCard project={project} />
