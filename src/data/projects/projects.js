@@ -202,21 +202,40 @@ export const projects = [
 
 export const archiveProjects = [
   {
-    slug: 'thread-city',
-    category: 'Web Application',
-    title: 'Thread City 2',
-    description:
-      'A "social network" demo web application with CRUD and infinite scrolling features.',
-    image: '/projectImages/thread-city/home.png',
-    liveDemo: '/',
-  },
-  {
     slug: 'portfolio',
     category: 'website',
     title: 'Portfolio',
     description:
       'A modern personal portfolio to showcase a developer’s background, skills, projects, and contact information.',
     image: '/projectImages/portfolio/home.png',
-    liveDemo: '/',
+    liveDemo: 'https://github.com/nguyenhbtrung/portfolio',
+  },
+  {
+    slug: 'thread-city',
+    category: 'Web Application',
+    title: 'Thread City 2',
+    description:
+      'A "social network" demo web application with CRUD and infinite scrolling features.',
+    image: '/projectImages/thread-city/1.png',
+    liveDemo: 'https://github.com/nguyenhbtrung/thread-city-2.0-frontend',
+  },
+  {
+    slug: '3d-racing-game',
+    category: 'Game / Unity',
+    title: '3D Racing Game',
+    description:
+      'A race on the simulated city of Thanh Xuan district',
+    image: '/projectImages/3d-racing-game/1.png',
+    liveDemo: 'https://github.com/nguyenhbtrung/3d-racing-game',
+  },
+  {
+    slug: 'procedural-building-generator',
+    category: 'Unity Package / AI Tools',
+    title: 'Procedural Building Generator',
+    description:
+      // 'A Unity package that utilizes AI and procedural algorithms to generate random, realistic city layouts with logical building placements and road networks.',
+      'Generate random, realistic city layouts with logical building placements and road networks.',
+    image: '/projectImages/procedural-building-generator/1.png',
+    liveDemo: 'https://github.com/nguyenhbtrung/procedural-building', 
   },
 ];
