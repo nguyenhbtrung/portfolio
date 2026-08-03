@@ -61,7 +61,6 @@ export function Projects() {
           spacing={0} 
           alignItems="center" 
           sx={{ 
-            mb: expanded ? 6 : 0, 
             transition: 'all .35s ease',
             '&:hover .decorator': {
               opacity: 1,
@@ -128,21 +127,39 @@ export function Projects() {
         />
       </Stack>
 
-        <Collapse in={expanded}>
-          <Grid container spacing={3}>
-            {archiveProjects.map((project) => (
-              <Grid
-                key={project.slug}
-                size={{
-                  xs: 12,
-                  md: 6,
-                }}
-              >
-                <ProjectArchiveCard project={project} />
-              </Grid>
-            ))}
-          </Grid>
-        </Collapse>
+      <Box
+        sx={{
+          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+          overflow: 'hidden',
+          
+          ...(!expanded && {
+            opacity: 0,
+            transform: 'translateY(-20px)',
+            marginTop: 0,
+          }),
+
+          ...(expanded && {
+            opacity: 1,
+            transform: 'translateY(0)',
+            marginTop: '32px',
+          }),
+        }}
+      >
+        <Grid container spacing={3}>
+          {archiveProjects.map((project) => (
+            <Grid
+              key={project.slug}
+              size={{
+                xs: 12,
+                md: 6,
+              }}
+            >
+              <ProjectArchiveCard project={project} />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+
       </Box>
     </Box>
   );
