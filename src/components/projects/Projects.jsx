@@ -136,12 +136,14 @@ export function Projects() {
             opacity: 0,
             transform: 'translateY(-20px)',
             marginTop: 0,
+            maxHeight: 0,
           }),
 
           ...(expanded && {
             opacity: 1,
             transform: 'translateY(0)',
             marginTop: '32px',
+            maxHeight: 10000,
           }),
         }}
       >
