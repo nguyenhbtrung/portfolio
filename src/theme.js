@@ -12,7 +12,7 @@ const commonComponents = {
     },
     shape: { borderRadius: 8 },
     typography: {
-        fontFamily: '"Inter", system-ui, -apple-system, sans-serif', 
+        fontFamily: '"Montserrat Variable", system-ui, -apple-system, sans-serif', 
     },
 }
 
