@@ -9,6 +9,8 @@ import '@fontsource/inter/700.css';
 
 import '@fontsource-variable/montserrat/wght.css';
 
+import '@fontsource/satisfy';
+
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
