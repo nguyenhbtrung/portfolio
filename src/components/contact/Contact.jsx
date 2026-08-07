@@ -6,34 +6,12 @@ import {
     IconButton,
     Tooltip
 } from '@mui/material';
-import {
-    GitHub,
-    LinkedIn,
-    Email
-} from '@mui/icons-material';
 import SectionHeading from '../SectionHeading';
 import { motion } from 'framer-motion';
 import { ContactForm } from './ContactForm';
+import { socialLinks } from '../../data/social-links';
 
 export function Contact() {
-
-    const socialLinks = [
-        {
-            icon: <Email fontSize="small" />,
-            href: 'mailto:nguyenhbtrung1907@gmail.com',
-            title: 'Email'
-        },
-        {
-            icon: <GitHub fontSize="small" />,
-            href: 'https://github.com/nguyenhbtrung',
-            title: 'GitHub'
-        },
-        {
-            icon: <LinkedIn fontSize="small" />,
-            href: 'https://www.linkedin.com/in/nguyenhbtrung/',
-            title: 'LinkedIn'
-        },
-    ];
 
     return (
         <Box id="contact" component={motion.div} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.6 }} py={{ xs: 8, md: 12 }}>
@@ -94,7 +72,7 @@ export function Contact() {
                                         }
                                     }}
                                 >
-                                    {item.icon}
+                                    <item.icon fontSize='small' />
                                 </IconButton>
                             </Tooltip>
                         ))}
