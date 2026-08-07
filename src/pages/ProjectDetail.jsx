@@ -155,12 +155,11 @@ export default function ProjectDetail() {
                 >
                     <Box>
                         <Typography
-                            variant='h2'
+                            variant='h3'
                             component="h1"
                             sx={{
-                                fontWeight: 700,
+                                fontWeight: 500,
                                 color: 'primary.main',
-                                letterSpacing: '-0.04em',
                             }}
                         >
                             {project.title}
@@ -1032,7 +1031,7 @@ export default function ProjectDetail() {
                         variant='h3'
                         component="h2"
                         sx={{
-                            fontWeight: 800,
+                            fontWeight: 500,
                             lineHeight: 1.05,
                             letterSpacing: "-0.04em",
                             mb: 2
