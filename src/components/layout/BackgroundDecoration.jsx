@@ -5,7 +5,7 @@ export function BackgroundDecoration() {
   return (
     <Box
       sx={{
-        position: 'fixed',
+        position: 'absolute',
         inset: 0,
         pointerEvents: 'none',
         zIndex: 1000,
@@ -35,7 +35,7 @@ export function BackgroundDecoration() {
           height: '30%',
           borderRadius: '50%',
           backgroundColor: 'secondary.main',
-          opacity: 0.1,
+          opacity: 0.05,
           filter: 'blur(100px)',
         }}
       />

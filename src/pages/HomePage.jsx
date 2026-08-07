@@ -9,6 +9,7 @@ import { About } from '../components/about';
 import { Skills } from '../components/skills';
 import { Projects } from '../components/projects';
 import { Contact } from '../components/contact';
+import { BackgroundDecoration } from '../components/layout';
 
 const HomePage = () => {
     const location = useLocation();
@@ -21,6 +22,7 @@ const HomePage = () => {
     }, [location])
     return (
         <>
+            <BackgroundDecoration />
             <Hero />
             <Divider sx={{ my: 6 }} />
             <About />
