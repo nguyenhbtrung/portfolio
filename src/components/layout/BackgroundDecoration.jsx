@@ -8,7 +8,7 @@ export function BackgroundDecoration() {
         position: 'absolute',
         inset: 0,
         pointerEvents: 'none',
-        zIndex: 1000,
+        zIndex: 10000,
         overflow: 'hidden',
       }}
     >
