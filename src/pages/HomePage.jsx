@@ -27,11 +27,11 @@ const HomePage = () => {
             <Divider sx={{ my: 6 }} />
             <About />
             <Divider sx={{ my: 6 }} />
-            <Skills />
-            <Divider sx={{ my: 6 }} />
             <div ref={projectsRef}>
                 <Projects />
             </div>
+            <Divider sx={{ my: 6 }} />
+            <Skills />
             <Divider sx={{ my: 6 }} />
             <Contact />
         </>
