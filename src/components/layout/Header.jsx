@@ -32,7 +32,7 @@ export function Header({ darkMode, setDarkMode }) {
     const isProjectDetail = location.pathname.startsWith('/project/')
     const sections = isProjectDetail
         ? ['Home', 'Projects']
-        : ['About', 'Skills', 'Projects', 'Contact']
+        : ['About', 'Projects', 'Skills', 'Contact']
 
     const year = new Date().getFullYear()
 
